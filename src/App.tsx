@@ -8,9 +8,10 @@ import styled from '@emotion/styled';
 
 const SideBar = styled.div`
   width: 200px;
-  height: 100vh;
+  min-height: 500px;
   display: column;
-  padding: 10px;
+  margin-left: 30px;
+  margin-top: 40px;
 `;
 
 interface ListData {
@@ -104,14 +105,21 @@ export default function App() {
       <SideBar>
         <DatePicker
           locale={locale}
+          style={{ width: 200, marginBottom: 20 }}
           defaultValue={dayjs('2023-01-01')}
           placeholder="StartDate"
           onChange={handlePickStartDate}
         />
-        <DatePicker locale={locale} defaultValue={dayjs()} placeholder="EndDate" onChange={handlePickEndDate} />
+        <DatePicker
+          locale={locale}
+          style={{ width: 200, marginBottom: 20 }}
+          defaultValue={dayjs()}
+          placeholder="EndDate"
+          onChange={handlePickEndDate}
+        />
         <Select
           value={timeUnit}
-          style={{ width: 120 }}
+          style={{ width: 200, marginBottom: 20 }}
           onChange={handleSelectTimeUnitChange}
           options={[
             { value: 'date', label: '일간' },
@@ -121,7 +129,7 @@ export default function App() {
         />
         <Select
           defaultValue=""
-          style={{ width: 120 }}
+          style={{ width: 200, marginBottom: 20 }}
           onChange={handleSelectGenderChange}
           options={[
             { value: '', label: '전체 성별' },
@@ -131,7 +139,7 @@ export default function App() {
         />
         <Select
           defaultValue=""
-          style={{ width: 120 }}
+          style={{ width: 200, marginBottom: 20 }}
           onChange={handleSelectDeviceChange}
           options={[
             { value: '', label: '전체 기기' },
@@ -141,7 +149,7 @@ export default function App() {
         />
         <Select
           defaultValue=""
-          style={{ width: 120 }}
+          style={{ width: 200, marginBottom: 20 }}
           onChange={handleSelectAgeChange}
           options={[
             { value: '', label: '전체 연령' },
@@ -153,9 +161,22 @@ export default function App() {
             { value: '60', label: '60세 이상' },
           ]}
         />
-        <Input placeholder="카테고리" value={category} onChange={handleCategoryOnChange} style={{ width: 120 }} />
-        <Input placeholder="키워드" value={keyword} onChange={handleKeywordOnChange} style={{ width: 120 }} />
-        <Button style={{ width: 120 }} onClick={handleButtonClick}>
+        <Input
+          placeholder="카테고리"
+          value={category}
+          onChange={handleCategoryOnChange}
+          style={{ width: 200, marginBottom: 20 }}
+        />
+        <Input
+          placeholder="키워드"
+          value={keyword}
+          onChange={handleKeywordOnChange}
+          style={{ width: 200, marginBottom: 20 }}
+        />
+        <Button
+          style={{ width: 200, marginBottom: 20, background: '#ed6b34', color: 'white' }}
+          onClick={handleButtonClick}
+        >
           조회
         </Button>
       </SideBar>
