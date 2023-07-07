@@ -4,6 +4,20 @@ import React, { useEffect, useState } from 'react';
 import locale from 'antd/es/date-picker/locale/ko_KR';
 import CustomHeader from './components/Header';
 import dayjs from 'dayjs';
+import styled from '@emotion/styled';
+
+const SideBar = styled.div`
+  width: 200px;
+  height: 100vh;
+  display: column;
+  padding: 10px;
+`;
+
+interface ListData {
+  period: string;
+  ratio: number;
+  group: string;
+}
 
 export default function App() {
   const [start, setStart] = useState<string>(dayjs('2023-01-01').format('YYYY-MM-DD'));
@@ -14,12 +28,12 @@ export default function App() {
   const [age, setAge] = useState<string>('');
   const [category, setCategory] = useState<string>('50000000');
   const [keyword, setKeyword] = useState<string>('정장');
-  const [list, setList] = useState<any[]>([]);
+  const [list, setList] = useState<ListData[]>([]);
   console.log(list);
 
   const getNaverList = async (): Promise<void> => {
     try {
-      const result = await axios.post(
+      const res = await axios.post(
         '/api/v1/datalab/shopping/category/keyword/age',
         {
           startDate: start,
@@ -39,7 +53,7 @@ export default function App() {
           },
         },
       );
-      setList(result.data);
+      setList(res.data.results[0].data);
     } catch (error) {
       console.log(error);
     }
@@ -87,7 +101,7 @@ export default function App() {
   return (
     <>
       <CustomHeader />
-      <Row justify="center" align="middle">
+      <SideBar>
         <DatePicker
           locale={locale}
           defaultValue={dayjs('2023-01-01')}
@@ -115,9 +129,6 @@ export default function App() {
             { value: 'f', label: '여성' },
           ]}
         />
-      </Row>
-
-      <Row justify="center" align="middle">
         <Select
           defaultValue=""
           style={{ width: 120 }}
@@ -144,8 +155,10 @@ export default function App() {
         />
         <Input placeholder="카테고리" value={category} onChange={handleCategoryOnChange} style={{ width: 120 }} />
         <Input placeholder="키워드" value={keyword} onChange={handleKeywordOnChange} style={{ width: 120 }} />
-        <Button onClick={handleButtonClick}>조회</Button>
-      </Row>
+        <Button style={{ width: 120 }} onClick={handleButtonClick}>
+          조회
+        </Button>
+      </SideBar>
     </>
   );
 }
