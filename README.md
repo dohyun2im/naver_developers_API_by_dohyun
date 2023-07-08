@@ -1,5 +1,8 @@
+![예시 이미지](./images/example.png)
+
 ## 작성자: 김도현 ehehwhdwhd@naver.com
-Yarn Berry 버전을 사용하여 패키지 설치가 필요 없습니다.
+Yarn Berry 버전을 사용하며 Zero Install 방식으로 패키지 설치가 필요 없습니다.<br/>
+
 
 ## Yarn 설치가 안되어 있는 경우.
 ```
