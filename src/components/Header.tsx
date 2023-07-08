@@ -9,15 +9,15 @@ const HeaderWrapper = styled.div`
   align-items: center;
   vertical-align: middle;
   border-bottom: 2px solid #d6d6d6;
-  padding-left: 30px;
-  margin-bottom: 15px;
+  padding-left: 20px;
+  margin-bottom: 10px;
 `;
 
 const HeaderColorText = styled.div`
   font-size: 26px;
-  font-weight: bold;
+  font-weight: 800;
   color: #1dc800;
-  margin-right: 15px;
+  margin-right: 10px;
 `;
 
 const HeaderText = styled.div`
@@ -27,11 +27,13 @@ const HeaderText = styled.div`
   margin-right: 5px;
 `;
 
-export default function CustomHeader() {
+function CustomHeader() {
   return (
     <HeaderWrapper>
       <HeaderColorText>Naver</HeaderColorText>
-      <HeaderText>Developers</HeaderText>
+      <HeaderText>Developers Shopping API</HeaderText>
     </HeaderWrapper>
   );
 }
+
+export default React.memo(CustomHeader);
