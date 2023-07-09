@@ -31,7 +31,7 @@ export default function DatePickes({ startDate, endDate, errorStart, errorEnd, e
   };
 
   const handlePickEndDate: DatePickerProps['onChange'] = (date: any, dateString: string): void => {
-    if (new Date(dateString) > new Date()) {
+    if (new Date(dateString) > new Date(dayjs().format('YYYY-MM-DD'))) {
       errorOver();
       return;
     }

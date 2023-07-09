@@ -10,18 +10,26 @@ import AgeSelect from './AgeSelect';
 import CategoryInput from './CategoryInput';
 import KeywordInput from './KeywordInput';
 import getNaverLists from '../../api/getNaverLists';
+import { useMediaQuery } from "react-responsive";
 import styled from '@emotion/styled';
 
-const SearchBarWrapper = styled.div`
+const PcContainer = styled.div`
   display: flex;
   justify-content: center;
 `;
 
-const SearchBarPCWrapper = styled.div`
+const PcWrapper = styled.div`
   display: flex;
   align-items: center;
   padding: 30px 20px 30px 20px;
   width: 1200px;
+`;
+
+const MobileWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
 `;
 
 export default function SearchBar() {
@@ -37,6 +45,7 @@ export default function SearchBar() {
     age,
   } = useSelector((state: any) => state.naver);
   const [api, contextHolder] = notification.useNotification();
+  const pcEnv = useMediaQuery({ query: '(min-width: 1200px)' });
 
   const errorKeyword = useCallback((): void => {
     api.destroy();
@@ -86,6 +95,16 @@ export default function SearchBar() {
     });
   }, []);
 
+  const errorApi = useCallback((): void => {
+    api.destroy();
+    api.error({
+      message: 'Naver developers API error.',
+      placement: 'topRight',
+      duration: 5,
+      style: { width: '500px' }
+    });
+  }, []);
+
   const getLists = async (): Promise<void> => {
     if (keyword === '' || keyword.trim() === '') {
       errorKeyword();
@@ -108,8 +127,9 @@ export default function SearchBar() {
       })
 
       dispatch(setList(res));
-    } catch (error) {
-      console.log(error);
+    }
+    catch (e) {
+      errorApi();
     }
   };
 
@@ -118,23 +138,51 @@ export default function SearchBar() {
   }, [startDate, endDate, timeUnit, device, gender, age]);
 
   return (
-    <SearchBarWrapper>
+    <>
       {contextHolder}
-      <SearchBarPCWrapper>
-        <DatePickers
-          startDate={startDate}
-          endDate={endDate}
-          errorStart={errorStart}
-          errorEnd={errorEnd} 
-          errorOver={errorOver}
-        />
-        <TimeUnitSelect timeUnit={timeUnit} />
-        <GenderSelect gender={gender} />
-        <DeviceSelect device={device} />
-        <AgeSelect age={age} />
-        <CategoryInput category={category} />
-        <KeywordInput keyword={keyword} getLists={getLists} />
-      </SearchBarPCWrapper>
-    </SearchBarWrapper>
+      {pcEnv?
+        <PcContainer>
+          <PcWrapper>
+            <DatePickers
+              startDate={startDate}
+              endDate={endDate}
+              errorStart={errorStart}
+              errorEnd={errorEnd} 
+              errorOver={errorOver}
+            />
+            <TimeUnitSelect timeUnit={timeUnit} />
+            <GenderSelect gender={gender} />
+            <DeviceSelect device={device} />
+            <AgeSelect age={age} />
+            <CategoryInput category={category} />
+            <KeywordInput keyword={keyword} getLists={getLists} />
+          </PcWrapper>
+        </PcContainer>
+        :
+        <>
+          <MobileWrapper>
+            <TimeUnitSelect timeUnit={timeUnit} />
+            <DatePickers
+              startDate={startDate}
+              endDate={endDate}
+              errorStart={errorStart}
+              errorEnd={errorEnd} 
+              errorOver={errorOver}
+            />
+          </MobileWrapper>
+
+          <MobileWrapper>
+            <GenderSelect gender={gender} />
+            <AgeSelect age={age} />
+          </MobileWrapper>
+
+          <MobileWrapper>
+            <DeviceSelect device={device} />
+            <CategoryInput category={category} />
+            <KeywordInput keyword={keyword} getLists={getLists} />
+          </MobileWrapper>
+        </>
+      }
+    </>
   );
 };

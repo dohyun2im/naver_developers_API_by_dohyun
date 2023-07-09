@@ -9,7 +9,7 @@ Yarn Berry 버전을 사용하며 Zero Install 방식으로 패키지 설치가 
 npm i yarn -g
 ```
 
-### root/.env
+### root/.env => Naver developers API keys
 ```
 REACT_APP_ClientID=YourID
 REACT_APP_Client_Secret=YourSecret
