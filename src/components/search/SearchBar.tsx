@@ -143,6 +143,7 @@ export default function SearchBar() {
       {pcEnv?
         <PcContainer>
           <PcWrapper>
+            <TimeUnitSelect timeUnit={timeUnit} />
             <DatePickers
               startDate={startDate}
               endDate={endDate}
@@ -150,10 +151,9 @@ export default function SearchBar() {
               errorEnd={errorEnd} 
               errorOver={errorOver}
             />
-            <TimeUnitSelect timeUnit={timeUnit} />
             <GenderSelect gender={gender} />
-            <DeviceSelect device={device} />
             <AgeSelect age={age} />
+            <DeviceSelect device={device} />
             <CategoryInput category={category} />
             <KeywordInput keyword={keyword} getLists={getLists} />
           </PcWrapper>

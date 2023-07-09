@@ -1,4 +1,6 @@
 ![예시 이미지](./public/example.png)
+![모바일 예시 이미지](./public/mobile_example.png)
+
 
 ## 작성자: 김도현 ehehwhdwhd@naver.com
 Yarn Berry 버전을 사용하며 Zero Install 방식으로 패키지 설치가 필요 없습니다.<br/>
