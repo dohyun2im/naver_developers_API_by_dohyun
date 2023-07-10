@@ -11,6 +11,9 @@ const CustomSelect = styled(Select)`
     font-size: 10px;
     font-weight: bold;
   }
+  .ant-select-selection-placeholder {
+    color: black;
+  }
 `;
 
 interface Props {
@@ -37,11 +40,11 @@ export default function AgeSelect({ age }: Props) {
 
   return (
     <CustomSelect
-        mode="multiple"
-        value={age}
-        placeholder='전체 연령'
-        onChange={handleSelectAgeChange}
-        options={options}
+      mode="multiple"
+      value={age}
+      placeholder="전체 연령"
+      onChange={handleSelectAgeChange}
+      options={options}
     />
   );
-};
+}

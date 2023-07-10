@@ -26,11 +26,5 @@ export default function DeviceSelect({ device }: Props) {
     { value: 'mo', label: 'Mobile' },
   ];
 
-  return (
-    <CustomSelect
-        defaultValue={device}
-        onChange={handleSelectDeviceChange}
-        options={options}
-    />
-  );
-};
+  return <CustomSelect defaultValue={device} onChange={handleSelectDeviceChange} options={options} />;
+}

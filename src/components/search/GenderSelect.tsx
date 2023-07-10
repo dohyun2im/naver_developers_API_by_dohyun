@@ -26,11 +26,5 @@ export default function GenderSelect({ gender }: Props) {
     { value: 'f', label: '여성' },
   ];
 
-  return (
-    <CustomSelect
-        defaultValue={gender}
-        onChange={handleSelectGenderChange}
-        options={options}
-    />
-  );
-};
+  return <CustomSelect defaultValue={gender} onChange={handleSelectGenderChange} options={options} />;
+}
