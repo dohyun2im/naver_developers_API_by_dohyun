@@ -37,7 +37,7 @@ yarn start
 ## 프로젝트 설명
 Select, DatePicker는 바뀔 때마다 새로 검색한다. <br/>
 카테고리와 키워드는 입력 후 돋보기 버튼을 누르거나 Input이 포커싱된 상태에서 Enter를 누르면 새로 검색한다.<br/>
-
+반응형으로 화면이 1260px보다 작아지면 SearchBar가 작아진다. <br/>
 
 ## 선택 사항
 Redux - persist , atnd, ant-chart , emotion 적용<br/>
