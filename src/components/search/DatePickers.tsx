@@ -1,12 +1,12 @@
 import React from 'react';
 import { DatePicker, DatePickerProps } from 'antd';
 import { useDispatch } from 'react-redux';
-import { setStart, setEnd } from '../../slice/naver';
+import { setStart, setEnd } from '../../store/naverSlice';
 import dayjs from 'dayjs';
 import styled from '@emotion/styled';
 
 const CustomDatePicker = styled(DatePicker)`
-  width: 115px;
+  width: 117px;
   margin-right: 10px;
 `;
 

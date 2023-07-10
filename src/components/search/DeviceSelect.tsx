@@ -1,11 +1,11 @@
 import React from 'react';
 import { Select } from 'antd';
 import { useDispatch } from 'react-redux';
-import { setDevice } from '../../slice/naver';
+import { setDevice } from '../../store/naverSlice';
 import styled from '@emotion/styled';
 
 const CustomSelect = styled(Select)`
-  width: 94.5px;
+  width: 105px;
   margin-right: 10px;
 `;
 

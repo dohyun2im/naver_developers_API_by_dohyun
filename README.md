@@ -2,13 +2,23 @@
 ![모바일 예시 이미지](./public/mobile_example.png)
 
 
-## 작성자: 김도현 ehehwhdwhd@naver.com
-Yarn Berry 버전을 사용하며 Zero Install 방식으로 패키지 설치가 필요 없습니다.<br/>
+## 작성자: 김도현
 
-
-## Yarn 설치가 안되어 있는 경우.
+## Yarn 설치가 안되어 있는 경우
 ```
 npm i yarn -g
+```
+
+## 의존성 설치
+```
+yarn
+```
+
+## typescript version
+```
+Ctrl + Shift + P 누른 후
+Select Typescript Version 클릭
+Use Workspace Version 클릭
 ```
 
 ### root/.env => Naver developers API keys
@@ -24,7 +34,8 @@ yarn start
 ```
 
 ## 프로젝트 설명
-Select, DatePicker는 바뀔 때마다 새로 검색하고 카테고리와 키워드는 입력 후 돋보기 버튼을 누르거나 키워드 Input이 포커싱된 상태에서 Enter를 누르면 새로 검색한다.
+Select, DatePicker는 바뀔 때마다 새로 검색한다. <br/>
+카테고리와 키워드는 입력 후 돋보기 버튼을 누르거나 Input이 포커싱된 상태에서 Enter를 누르면 새로 검색한다.
 
 ## 선택 사항
 Redux - persist , atnd, ant-chart , emotion 적용

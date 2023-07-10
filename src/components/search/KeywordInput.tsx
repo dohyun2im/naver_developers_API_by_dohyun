@@ -1,7 +1,7 @@
 import React from 'react';
 import { Input } from 'antd';
 import { useDispatch } from 'react-redux';
-import { setKeyword } from '../../slice/naver';
+import { setKeyword } from '../../store/naverSlice';
 import styled from '@emotion/styled';
 
 const CustomInput = styled(Input.Search)`
@@ -10,7 +10,7 @@ const CustomInput = styled(Input.Search)`
 
 interface Props {
   keyword: string;
-  getLists: () => Promise<void>;
+  getLists: () => void;
 }
 
 export default function KeywordInput({ keyword, getLists }: Props) {

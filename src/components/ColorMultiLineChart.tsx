@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Result } from 'antd';
 import { Line } from '@ant-design/plots';
 import { useSelector } from 'react-redux';
-import { ListData } from '../slice/naver';
+import { ListData } from '../store/naverSlice';
 import styled from '@emotion/styled';
 
 const ChartWrapper = styled.div`

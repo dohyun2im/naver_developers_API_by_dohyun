@@ -17,6 +17,7 @@ interface NaverState {
   gender: '' | 'm' | 'f';
   age: string[];
   list: ListData[];
+  loadSuccess: boolean;
 }
 
 const initialState: NaverState = {
@@ -29,6 +30,7 @@ const initialState: NaverState = {
   gender: '',
   age: [],
   list: [],
+  loadSuccess: true,
 };
 
 export const naverSlice = createSlice({
@@ -62,10 +64,28 @@ export const naverSlice = createSlice({
     setList(state, action) {
       state.list = action.payload;
     },
+    fetchDataSuccess: (state, action) => {
+      state.loadSuccess = true;
+      state.list = action.payload;
+    },
+    fetchDataFailure: (state) => {
+      state.loadSuccess = false;
+    },
   },
 });
 
-export const { setStart, setEnd, setTimeUnit, setCategory, setKeyword, setDevice, setGender, setAge, setList } =
-  naverSlice.actions;
+export const {
+  setStart,
+  setEnd,
+  setTimeUnit,
+  setCategory,
+  setKeyword,
+  setDevice,
+  setGender,
+  setAge,
+  setList,
+  fetchDataSuccess,
+  fetchDataFailure,
+} = naverSlice.actions;
 
 export default naverSlice.reducer;

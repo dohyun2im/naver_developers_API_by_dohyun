@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
 import { notification } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import { setList } from '../../slice/naver';
 import DatePickers from './DatePickers';
 import TimeUnitSelect from './TimeUnitSelect';
 import GenderSelect from './GenderSelect';
@@ -9,7 +8,6 @@ import DeviceSelect from './DeviceSelect';
 import AgeSelect from './AgeSelect';
 import CategoryInput from './CategoryInput';
 import KeywordInput from './KeywordInput';
-import getNaverLists from '../../api/getNaverLists';
 import { useMediaQuery } from 'react-responsive';
 import styled from '@emotion/styled';
 
@@ -22,7 +20,7 @@ const PcWrapper = styled.div`
   display: flex;
   align-items: center;
   padding: 30px 20px 30px 20px;
-  width: 1200px;
+  width: 1260px;
 `;
 
 const MobileWrapper = styled.div`
@@ -34,11 +32,19 @@ const MobileWrapper = styled.div`
 
 export default function SearchBar() {
   const dispatch = useDispatch();
-  const { startDate, endDate, timeUnit, category, keyword, device, gender, age } = useSelector(
-    (state: any) => state.naver,
-  );
+  const {
+    startDate,
+    endDate,
+    timeUnit,
+    category,
+    keyword,
+    device,
+    gender,
+    age,
+    loadSuccess,
+  } = useSelector((state: any) => state.naver);
   const [api, contextHolder] = notification.useNotification();
-  const pcEnv = useMediaQuery({ query: '(min-width: 1200px)' });
+  const pcEnv = useMediaQuery({ query: '(min-width: 1260px)' });
 
   const errorKeyword = useCallback((): void => {
     api.destroy();
@@ -98,17 +104,20 @@ export default function SearchBar() {
     });
   }, []);
 
-  const getLists = async (): Promise<void> => {
-    if (keyword === '' || keyword.trim() === '') {
+  const getLists = () => {
+    if (!keyword || keyword.trim() === '' || typeof keyword !== 'string') {
       errorKeyword();
       return;
     }
-    if (category === '' || category.trim() === '') {
+
+    if (category === '' || category.trim() === '' || typeof category !== 'string') {
       errorCategory();
       return;
     }
-    try {
-      const res = await getNaverLists({
+
+    dispatch({
+      type: 'FETCH_DATA_REQUEST',
+      payload: {
         startDate: startDate,
         endDate: endDate,
         timeUnit: timeUnit,
@@ -117,17 +126,17 @@ export default function SearchBar() {
         device: device,
         gender: gender,
         ages: age,
-      });
-
-      dispatch(setList(res));
-    } catch (e) {
-      errorApi();
-    }
+      },
+    });
   };
 
   useEffect(() => {
     getLists();
   }, [startDate, endDate, timeUnit, device, gender, age]);
+
+  useEffect(() => {
+    if (!loadSuccess) errorApi();
+  }, [loadSuccess]);
 
   return (
     <>
@@ -146,7 +155,7 @@ export default function SearchBar() {
             <GenderSelect gender={gender} />
             <AgeSelect age={age} />
             <DeviceSelect device={device} />
-            <CategoryInput category={category} />
+            <CategoryInput category={category} getLists={getLists} />
             <KeywordInput keyword={keyword} getLists={getLists} />
           </PcWrapper>
         </PcContainer>
@@ -170,7 +179,7 @@ export default function SearchBar() {
 
           <MobileWrapper>
             <DeviceSelect device={device} />
-            <CategoryInput category={category} />
+            <CategoryInput category={category} getLists={getLists} />
             <KeywordInput keyword={keyword} getLists={getLists} />
           </MobileWrapper>
         </>

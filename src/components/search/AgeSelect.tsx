@@ -1,11 +1,11 @@
 import React from 'react';
 import { Select } from 'antd';
 import { useDispatch } from 'react-redux';
-import { setAge } from '../../slice/naver';
+import { setAge } from '../../store/naverSlice';
 import styled from '@emotion/styled';
 
 const CustomSelect = styled(Select)`
-  width: 269px;
+  width: 272px;
   margin-right: 10px;
   .ant-select-selection-item-content {
     font-size: 10px;

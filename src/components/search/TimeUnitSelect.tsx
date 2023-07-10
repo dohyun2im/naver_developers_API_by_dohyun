@@ -1,11 +1,11 @@
 import React from 'react';
 import { Select } from 'antd';
 import { useDispatch } from 'react-redux';
-import { setTimeUnit } from '../../slice/naver';
+import { setTimeUnit } from '../../store/naverSlice';
 import styled from '@emotion/styled';
 
 const CustomSelect = styled(Select)`
-  width: 67px;
+  width: 70px;
   margin-right: 10px;
 `;
 
