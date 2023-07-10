@@ -4,8 +4,6 @@ import ColorMultiLineChart from './components/ColorMultiLineChart';
 import SearchBar from './components/search/SearchBar';
 
 export default function App() {
-
-
   return (
     <>
       <CustomHeader />

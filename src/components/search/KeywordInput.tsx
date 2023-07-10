@@ -13,7 +13,7 @@ interface Props {
   getLists: () => Promise<void>;
 }
 
-export default function KeywordInput({keyword, getLists}:Props) {
+export default function KeywordInput({ keyword, getLists }: Props) {
   const dispatch = useDispatch();
 
   const handleKeywordOnChange = (e: any): void => {
@@ -22,12 +22,12 @@ export default function KeywordInput({keyword, getLists}:Props) {
 
   return (
     <CustomInput
-        placeholder="키워드"
-        value={keyword}
-        addonBefore="키워드: "
-        onChange={handleKeywordOnChange}
-        onPressEnter={getLists}
-        onSearch={getLists}
+      placeholder="키워드"
+      value={keyword}
+      addonBefore="키워드: "
+      onChange={handleKeywordOnChange}
+      onPressEnter={getLists}
+      onSearch={getLists}
     />
   );
-};
+}

@@ -10,7 +10,7 @@ import AgeSelect from './AgeSelect';
 import CategoryInput from './CategoryInput';
 import KeywordInput from './KeywordInput';
 import getNaverLists from '../../api/getNaverLists';
-import { useMediaQuery } from "react-responsive";
+import { useMediaQuery } from 'react-responsive';
 import styled from '@emotion/styled';
 
 const PcContainer = styled.div`
@@ -34,16 +34,9 @@ const MobileWrapper = styled.div`
 
 export default function SearchBar() {
   const dispatch = useDispatch();
-  const {
-    startDate,
-    endDate,
-    timeUnit,
-    category,
-    keyword,
-    device,
-    gender,
-    age,
-  } = useSelector((state: any) => state.naver);
+  const { startDate, endDate, timeUnit, category, keyword, device, gender, age } = useSelector(
+    (state: any) => state.naver,
+  );
   const [api, contextHolder] = notification.useNotification();
   const pcEnv = useMediaQuery({ query: '(min-width: 1200px)' });
 
@@ -71,7 +64,7 @@ export default function SearchBar() {
       message: '시작하는 날짜는 끝나는 날짜와 같거나 이전이어야 합니다.',
       placement: 'topRight',
       duration: 5,
-      style: { width: '500px' }
+      style: { width: '500px' },
     });
   }, []);
 
@@ -81,7 +74,7 @@ export default function SearchBar() {
       message: '끝나는 날짜는 시작하는 날짜와 같거나 이후이어야 합니다.',
       placement: 'topRight',
       duration: 5,
-      style: { width: '500px' }
+      style: { width: '500px' },
     });
   }, []);
 
@@ -91,7 +84,7 @@ export default function SearchBar() {
       message: '끝나는 날짜는 현재 날짜와 같거나 이전이어야 합니다.',
       placement: 'topRight',
       duration: 5,
-      style: { width: '500px' }
+      style: { width: '500px' },
     });
   }, []);
 
@@ -101,7 +94,7 @@ export default function SearchBar() {
       message: 'Naver developers API error.',
       placement: 'topRight',
       duration: 5,
-      style: { width: '500px' }
+      style: { width: '500px' },
     });
   }, []);
 
@@ -124,11 +117,10 @@ export default function SearchBar() {
         device: device,
         gender: gender,
         ages: age,
-      })
+      });
 
       dispatch(setList(res));
-    }
-    catch (e) {
+    } catch (e) {
       errorApi();
     }
   };
@@ -140,7 +132,7 @@ export default function SearchBar() {
   return (
     <>
       {contextHolder}
-      {pcEnv?
+      {pcEnv ? (
         <PcContainer>
           <PcWrapper>
             <TimeUnitSelect timeUnit={timeUnit} />
@@ -148,7 +140,7 @@ export default function SearchBar() {
               startDate={startDate}
               endDate={endDate}
               errorStart={errorStart}
-              errorEnd={errorEnd} 
+              errorEnd={errorEnd}
               errorOver={errorOver}
             />
             <GenderSelect gender={gender} />
@@ -158,7 +150,7 @@ export default function SearchBar() {
             <KeywordInput keyword={keyword} getLists={getLists} />
           </PcWrapper>
         </PcContainer>
-        :
+      ) : (
         <>
           <MobileWrapper>
             <TimeUnitSelect timeUnit={timeUnit} />
@@ -166,7 +158,7 @@ export default function SearchBar() {
               startDate={startDate}
               endDate={endDate}
               errorStart={errorStart}
-              errorEnd={errorEnd} 
+              errorEnd={errorEnd}
               errorOver={errorOver}
             />
           </MobileWrapper>
@@ -182,7 +174,7 @@ export default function SearchBar() {
             <KeywordInput keyword={keyword} getLists={getLists} />
           </MobileWrapper>
         </>
-      }
+      )}
     </>
   );
-};
+}

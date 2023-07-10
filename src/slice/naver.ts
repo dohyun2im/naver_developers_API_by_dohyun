@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 import dayjs from 'dayjs';
 
 export interface ListData {
@@ -32,7 +32,7 @@ const initialState: NaverState = {
 };
 
 export const naverSlice = createSlice({
-  name: "naver",
+  name: 'naver',
   initialState,
   reducers: {
     setStart(state, action) {
@@ -65,16 +65,7 @@ export const naverSlice = createSlice({
   },
 });
 
-export const {
-  setStart,
-  setEnd,
-  setTimeUnit,
-  setCategory,
-  setKeyword,
-  setDevice,
-  setGender,
-  setAge,
-  setList 
-} = naverSlice.actions;
+export const { setStart, setEnd, setTimeUnit, setCategory, setKeyword, setDevice, setGender, setAge, setList } =
+  naverSlice.actions;
 
 export default naverSlice.reducer;

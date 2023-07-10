@@ -26,11 +26,5 @@ export default function TimeUnitSelect({ timeUnit }: Props) {
     { value: 'month', label: '월간' },
   ];
 
-  return (
-    <CustomSelect
-      value={timeUnit}
-      onChange={handleSelectTimeUnitChange}
-      options={options}
-    />
-  );
-};
+  return <CustomSelect value={timeUnit} onChange={handleSelectTimeUnitChange} options={options} />;
+}

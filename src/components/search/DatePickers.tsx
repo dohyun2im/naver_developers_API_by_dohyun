@@ -45,16 +45,8 @@ export default function DatePickes({ startDate, endDate, errorStart, errorEnd, e
 
   return (
     <>
-      <CustomDatePicker
-        value={dayjs(startDate)}
-        placeholder="StartDate"
-        onChange={handlePickStartDate}
-      />
-      <CustomDatePicker
-        value={dayjs(endDate)}
-        placeholder="EndDate"
-        onChange={handlePickEndDate}
-      />
+      <CustomDatePicker value={dayjs(startDate)} placeholder="StartDate" onChange={handlePickStartDate} />
+      <CustomDatePicker value={dayjs(endDate)} placeholder="EndDate" onChange={handlePickEndDate} />
     </>
   );
-};
+}
