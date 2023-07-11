@@ -104,19 +104,19 @@ export default function SearchBar() {
     });
   }, []);
 
-  const getLists = () => {
+  const getNaverLists = () => {
     if (!keyword || keyword.trim() === '' || typeof keyword !== 'string') {
       errorKeyword();
       return;
     }
 
-    if (category === '' || category.trim() === '' || typeof category !== 'string') {
+    if (!category || category.trim() === '' || typeof category !== 'string') {
       errorCategory();
       return;
     }
 
     dispatch({
-      type: 'FETCH_DATA_REQUEST',
+      type: 'FETCH_NAVER_REQUEST',
       payload: {
         startDate: startDate,
         endDate: endDate,
@@ -131,7 +131,7 @@ export default function SearchBar() {
   };
 
   useEffect(() => {
-    getLists();
+    getNaverLists();
   }, [startDate, endDate, timeUnit, device, gender, age]);
 
   useEffect(() => {
@@ -155,8 +155,8 @@ export default function SearchBar() {
             <GenderSelect gender={gender} />
             <AgeSelect age={age} />
             <DeviceSelect device={device} />
-            <CategoryInput category={category} getLists={getLists} />
-            <KeywordInput keyword={keyword} getLists={getLists} />
+            <CategoryInput category={category} getLists={getNaverLists} />
+            <KeywordInput keyword={keyword} getLists={getNaverLists} />
           </PcWrapper>
         </PcContainer>
       ) : (
@@ -179,8 +179,8 @@ export default function SearchBar() {
 
           <MobileWrapper>
             <DeviceSelect device={device} />
-            <CategoryInput category={category} getLists={getLists} />
-            <KeywordInput keyword={keyword} getLists={getLists} />
+            <CategoryInput category={category} getLists={getNaverLists} />
+            <KeywordInput keyword={keyword} getLists={getNaverLists} />
           </MobileWrapper>
         </>
       )}

@@ -64,11 +64,11 @@ export const naverSlice = createSlice({
     setList(state, action) {
       state.list = action.payload;
     },
-    fetchDataSuccess: (state, action) => {
+    fetchNaverSuccess: (state, action) => {
       state.loadSuccess = true;
       state.list = action.payload;
     },
-    fetchDataFailure: (state) => {
+    fetchNaverFailure: (state) => {
       state.loadSuccess = false;
     },
   },
@@ -84,8 +84,8 @@ export const {
   setGender,
   setAge,
   setList,
-  fetchDataSuccess,
-  fetchDataFailure,
+  fetchNaverSuccess,
+  fetchNaverFailure,
 } = naverSlice.actions;
 
 export default naverSlice.reducer;
