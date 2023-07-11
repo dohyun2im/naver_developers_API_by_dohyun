@@ -15,7 +15,7 @@ npm i yarn -g
 yarn
 ```
 
-## typescript version
+## typescript error 발생 시
 ```
 Ctrl + Shift + P 누른 후
 Select Typescript Version 클릭
